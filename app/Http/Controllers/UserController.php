@@ -8,20 +8,24 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = [
-            'JOE',
-            'ITOX',
-            'BENTA'
+        if (request()->has('empty'))
+        {
+            $user = [];
+        } else {
+            $users = [
+                'JOE',
+                'ITOX',
+                'BENTA'
 
-        ];
-
+            ];
+        }
         $title = 'Listado de usuarios';
-        return view('users', compact('users','title'));
+        return view('users.index', compact('users','title'));
     }
 
     public function show($id)
     {
-        return "Mostrando detalle del usuario: {$id}";
+        return view('users.show', compact('id'));
     }
 
     public function create()
@@ -31,6 +35,6 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return "Usuario {$id}, sera editado";
+        return view('users.edit', compact('id'));
     }
 }
