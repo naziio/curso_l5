@@ -10,11 +10,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+
+        $professionId = DB::table('professions')
+            ->where('title', 'Desarrollador back-end')
+            ->value('id');
+
         DB::table('users')->insert([
             'name' => 'Ignacio Pena',
             'email' => 'ignacio.pena@ceinf.cl',
             'password' => bcrypt('luna'),
-            'profession_id' => 1
+            'profession_id' => $professionId
         ]);
     }
 }
