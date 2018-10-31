@@ -1,4 +1,7 @@
 <?php
+
+use App\Profession;
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 class UsersTableSeeder extends Seeder
@@ -11,11 +14,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-        $professionId = DB::table('professions')
-            ->where('title', 'Desarrollador back-end')
+        $professionId = Profession::where('title', 'Desarrollador back-end')
             ->value('id');
 
-        DB::table('users')->insert([
+        User::create([
             'name' => 'Ignacio Pena',
             'email' => 'ignacio.pena@ceinf.cl',
             'password' => bcrypt('luna'),
